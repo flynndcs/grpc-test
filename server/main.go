@@ -25,7 +25,7 @@ import (
 	"log"
 	"net"
 
-	pb "grpc-test/proto"
+	gen "grpc-test/gen"
 
 	"google.golang.org/grpc"
 
@@ -47,8 +47,8 @@ func main() {
 	s := grpc.NewServer()
 	new := greeterNew.GreeterNew{}
 
-	pb.RegisterGreeterServer(s, &greeter.Greeter{New: &new})
-	pb.RegisterGreeterNewServer(s, &new)
+	gen.RegisterGreeterServer(s, &greeter.Greeter{New: &new})
+	gen.RegisterGreeterNewServer(s, &new)
 
 	log.Printf("server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {

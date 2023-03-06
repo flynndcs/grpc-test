@@ -5,7 +5,7 @@ import (
 	"flag"
 	"log"
 
-	pb "grpc-test/proto"
+	gen "grpc-test/gen"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -29,20 +29,20 @@ func main() {
 	}
 	defer conn.Close()
 
-	c := pb.NewGreeterClient(conn)
-	cNew := pb.NewGreeterNewClient(conn)
+	c := gen.NewGreeterClient(conn)
+	cNew := gen.NewGreeterNewClient(conn)
 
 	// request to greeter
 	ctx := context.Background()
 
-	r, err := c.SayHello(ctx, &pb.HelloRequest{Name: *name})
+	r, err := c.SayHello(ctx, &gen.HelloRequest{Name: *name})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}
 	log.Printf("Greeting: %s", r.GetMessage())
 
 	// request to greeter new
-	rNew, err := cNew.SayHello(ctx, &pb.HelloRequestNew{Name: *name})
+	rNew, err := cNew.SayHello(ctx, &gen.HelloRequestNew{Name: *name})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
 	}

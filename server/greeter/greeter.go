@@ -4,22 +4,22 @@ import (
 	"context"
 	"log"
 
-	pb "grpc-test/proto"
+	gen "grpc-test/gen"
 )
 
 // Greeter is used to implement helloworld.GreeterServer.
 type Greeter struct {
-	New pb.GreeterNewServer
-	pb.UnimplementedGreeterServer
+	New gen.GreeterNewServer
+	gen.UnimplementedGreeterServer
 }
 
 // SayHello implements helloworld.GreeterServer
-func (s *Greeter) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
-	inNew := pb.HelloRequestNew{Name: in.Name}
+func (s *Greeter) SayHello(ctx context.Context, in *gen.HelloRequest) (*gen.HelloReply, error) {
+	inNew := gen.HelloRequestNew{Name: in.Name}
 	response, err := s.New.SayHello(ctx, &inNew)
 	if err != nil {
 		log.Printf("error from external call to new greeter")
 	}
-	return &pb.HelloReply{Message: response.Message}, nil
+	return &gen.HelloReply{Message: response.Message}, nil
 
 }

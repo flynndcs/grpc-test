@@ -3,13 +3,13 @@ package greeterNew
 import (
 	"context"
 
-	pb "grpc-test/proto"
+	gen "grpc-test/gen"
 )
 
 type GreeterNew struct {
-	pb.UnimplementedGreeterNewServer
+	gen.UnimplementedGreeterNewServer
 }
 
-func (s *GreeterNew) SayHello(ctx context.Context, in *pb.HelloRequestNew) (*pb.HelloReplyNew, error) {
-	return &pb.HelloReplyNew{Message: "Hello new " + in.GetName()}, nil
+func (s *GreeterNew) SayHello(ctx context.Context, in *gen.HelloRequestNew) (*gen.HelloReplyNew, error) {
+	return &gen.HelloReplyNew{Message: "Hello new " + in.GetName()}, nil
 }

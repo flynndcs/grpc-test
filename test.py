@@ -1,8 +1,6 @@
 import grpc
-import greeter_pb2
-import greeter_pb2_grpc
-import greeterNew_pb2
-import greeterNew_pb2_grpc
+
+from gen import greeter_pb2, greeter_pb2_grpc, greeterNew_pb2, greeterNew_pb2_grpc
 
 def run():
     # connect
