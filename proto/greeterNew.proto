@@ -1,0 +1,20 @@
+
+syntax = "proto3";
+
+option go_package = "google.golang.org/grpc/examples/helloworld/helloworld";
+
+package helloworld;
+
+service GreeterNew{
+  rpc SayHello (HelloRequestNew) returns (HelloReplyNew){}
+}
+
+// The request message containing the user's name.
+message HelloRequestNew {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message HelloReplyNew {
+  string message = 1;
+}
