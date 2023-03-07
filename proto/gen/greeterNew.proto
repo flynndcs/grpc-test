@@ -4,8 +4,14 @@ option go_package = "./";
 
 package proto;
 
+import "google/api/annotations.proto";
+
 service GreeterNew{
-  rpc SayHello (HelloRequestNew) returns (HelloReplyNew){}
+  rpc SayHello (HelloRequestNew) returns (HelloReplyNew){
+    option (google.api.http) = {
+      get: "/new/hello"
+    };
+  }
 }
 
 // The request message containing the user's name.
